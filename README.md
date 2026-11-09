@@ -1,38 +1,22 @@
 # Advanced Inventory Management System
 
-A professional desktop inventory management application built with **Python, CustomTkinter and SQLite**.
+Python 3.10+, standard library only.
 
 ## Features
-- Live dashboard with stat cards, recent transactions, low-stock alerts and charts
-- Product, category and supplier management with search and filters
-- Purchases and sales that update stock automatically
-- Sales are blocked when stock is insufficient
-- Low-stock alerts based on reorder levels
-- Full stock movement history and date-wise reports
-- Report export to CSV (opens in Excel)
-- Backup and restore
-- Admin login with salted PBKDF2 password hashing
+- Multi-warehouse stock tracking
+- FIFO cost layers (accurate COGS and valuation)
+- Receipts, issues, transfers (cost-preserving) and adjustments
+- Immutable audit trail of every movement
+- Atomic operations (full rollback on failure)
+- Low-stock alerts with suggested order quantities
 
-## Tech Stack
-Python 3.10+, CustomTkinter, SQLite, Matplotlib
+## Run
+    python main.py
+    python -m unittest discover -v
 
-
-## Installation
-1. Clone the repo:
-   git clone https://github.com/YOUR-USERNAME/advanced-inventory-management-system.git
-   cd advanced-inventory-management-system
-2. Install dependencies:
-   pip install -r requirements.txt
-3. Run:
-   python inventory_system.py
-
-On first run an admin account is created (the login screen shows the
-details). Change the password in **Backup & Settings** after logging in.
-
-## Project Structure
-Single-file application organised into layers: models, DatabaseManager,
-business-logic managers (Authentication, Product, Inventory, Purchase,
-Sales, Report) and the GUI.
-
-## Author
-Varkha Motani - www.linkedin.com/in/varkha-motani-98b948414
+## Layout
+    inventory/models.py      domain entities
+    inventory/repository.py  SQLite persistence + transactions
+    inventory/services.py    business rules
+    inventory/reporting.py   text tables
+    tests/                   unit tests
